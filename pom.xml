@@ -2,47 +2,79 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <!-- Versión del modelo POM -->
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.steven.descargardocumentos</groupId>
-  <artifactId>decargardocumentos</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>decargardocumentos</name>
-  <packaging>war</packaging>
+    <!-- Información básica sobre el proyecto -->
+    <groupId>com.steven.descargardocumentos</groupId>
+    <artifactId>descargardocumentos</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>descargardocumentos</name>
+    <!-- Definimos el tipo de empaquetado como WAR, adecuado para aplicaciones web -->
+    <packaging>war</packaging>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.target>23</maven.compiler.target>
-    <maven.compiler.source>23</maven.compiler.source>
-    <junit.version>5.11.0</junit.version>
-  </properties>
+    <properties>
+        <!-- Codificación UTF-8 para los archivos fuente del proyecto -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Configuración para compilar el proyecto con Java 17 -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- Definimos la versión de JUnit para las pruebas -->
+        <junit.version>5.11.0</junit.version>
+    </properties>
 
-  <dependencies>
-<dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-<dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>  </dependencies>
+    <dependencies>
+        <!-- Dependencia para la API de Servlets de Jakarta (necesaria para trabajar con servlets en una aplicación web) -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+            <!-- 'provided' significa que el contenedor de servlets (como Tomcat) proporcionará esta dependencia en tiempo de ejecución -->
+            <scope>provided</scope>
+        </dependency>
 
-  <build>
-    <plugins>
-<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.4.0</version>
-      </plugin>    </plugins>
-  </build>
+        <!-- Dependencia para iText, usada para la creación de archivos PDF -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.2</version>
+            <!-- iText es una popular librería para generar PDFs dinámicamente -->
+        </dependency>
+
+        <!-- Dependencia para Apache POI, usada para la creación y manipulación de archivos Excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+            <!-- Apache POI es la librería estándar para trabajar con archivos Excel (XLSX) en Java -->
+        </dependency>
+
+        <!-- Dependencias para realizar pruebas unitarias con JUnit -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <!-- Estas dependencias se usan para las pruebas unitarias con JUnit 5 -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin para empaquetar la aplicación como un archivo WAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <!-- Este plugin empaqueta la aplicación en formato WAR para implementarla en servidores de aplicaciones -->
+            </plugin>
+        </plugins>
+    </build>
 </project>
+
